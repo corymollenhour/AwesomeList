@@ -2,8 +2,6 @@ package com.example.cory.awesomelist;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -20,8 +18,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.cory.awesomelist.R;
-
 import java.util.ArrayList;
 
 public class SubList extends AppCompatActivity {
@@ -29,12 +25,10 @@ public class SubList extends AppCompatActivity {
     private ArrayAdapter<String> itemsAdapter;
     private ListView lvItems;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
+        setContentView(R.layout.activity_sub_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -44,23 +38,12 @@ public class SubList extends AppCompatActivity {
         itemsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
-        items.add("Second Item");
-        items.add("Second Item");
-        items.add("Second Item");
-        items.add("Second Item");
-
-        //Share button below
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Toast.makeText(getApplicationContext(), "hello", Toast.LENGTH_LONG).show();
-            }
-        });
+        items.add("Milk");
+        items.add("Eggs");
+        items.add("Bread");
+        items.add("Beer");
+        items.add("Christmas movie");
+        items.add("Take out the trash");
 
         //Add item on submit
         EditText editText = (EditText) findViewById(R.id.etNewItem);
@@ -83,6 +66,7 @@ public class SubList extends AppCompatActivity {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
         itemsAdapter.add(itemText);
+        Toast.makeText(getApplicationContext(), "Added " + itemText + "... Yum!", Toast.LENGTH_LONG).show();
         etNewItem.setText("");
     }
     //Close Keyboard on submit
@@ -96,7 +80,7 @@ public class SubList extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_lists, menu);
+        //getMenuInflater().inflate(R.menu.menu_lists, menu);
         return true;
     }
 

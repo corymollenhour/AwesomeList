@@ -21,9 +21,10 @@
             <ListView
                 android:id="@+id/lvItems"
                 android:layout_width="wrap_content"
-                android:layout_height="422dp"
-                android:layout_marginTop="68dp"/>
+                android:layout_height="490dp"
+                android:layout_marginTop="0dp" />
         </LinearLayout>
+
     </ScrollView>
 
     <EditText
@@ -35,13 +36,13 @@
         android:singleLine="true"
         android:imeOptions="actionDone"
         android:maxLines="1"
-        android:hint="Enter a new item"/>
+        android:hint="@string/add_item_text"/>
     <Button
         android:id="@+id/btnAddItem"
         android:layout_width="112dp"
         android:layout_height="wrap_content"
         android:onClick="onAddItem"
-        android:text="Add Item" />
+        android:text="@string/add_button" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

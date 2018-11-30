@@ -3,4 +3,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_sub_list">SubList</string>
     <string name="title_activity_share">Share</string>
+    <string name="add_item_text">Enter a new item</string>
+    <string name="add_button">Add Item</string>
 </resources>
