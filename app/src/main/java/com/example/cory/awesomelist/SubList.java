@@ -1,7 +1,10 @@
 package com.example.cory.awesomelist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -51,6 +54,15 @@ public class SubList extends AppCompatActivity {
         items.add("Christmas movie");
         items.add("Take out the trash");
 
+        //Go to share page
+        FloatingActionButton share = (FloatingActionButton) findViewById(R.id.fab);
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                launchActivity();
+            }
+        });
+
         //Add item on submit
         EditText editText = (EditText) findViewById(R.id.etNewItem);
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -69,11 +81,17 @@ public class SubList extends AppCompatActivity {
 
     private OnItemClickListener mMessageClickedHandler = new OnItemClickListener() {
         public void onItemClick(AdapterView parent, View v, int position, long id) {
-            Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Bye " + parent.getItemAtPosition(position).toString() + "...", Toast.LENGTH_SHORT).show();
             items.remove(position);
             itemsAdapter.notifyDataSetChanged();
         }
     };
+
+    private void launchActivity() {
+
+        Intent intent = new Intent(this, Share.class);
+        startActivity(intent);
+    }
 
     //Adds item to list
     public void onAddItem(View v) {
