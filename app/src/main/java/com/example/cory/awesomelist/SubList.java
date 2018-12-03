@@ -9,16 +9,21 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SubList extends AppCompatActivity {
     private ArrayList<String> items;
@@ -31,12 +36,13 @@ public class SubList extends AppCompatActivity {
         setContentView(R.layout.activity_sub_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         // ADD HERE
         lvItems = (ListView) findViewById(R.id.lvItems);
         items = new ArrayList<String>();
         itemsAdapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, items);
+        lvItems.setOnItemClickListener(mMessageClickedHandler);
         lvItems.setAdapter(itemsAdapter);
         items.add("Milk");
         items.add("Eggs");
@@ -61,13 +67,22 @@ public class SubList extends AppCompatActivity {
         });
     }
 
+    private OnItemClickListener mMessageClickedHandler = new OnItemClickListener() {
+        public void onItemClick(AdapterView parent, View v, int position, long id) {
+            Toast.makeText(getApplicationContext(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
+            items.remove(position);
+            itemsAdapter.notifyDataSetChanged();
+        }
+    };
+
     //Adds item to list
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
         itemsAdapter.add(itemText);
-        Toast.makeText(getApplicationContext(), "Added " + itemText + "... Yum!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Added " + itemText + "... Yum!", Toast.LENGTH_SHORT).show();
         etNewItem.setText("");
+
     }
     //Close Keyboard on submit
     private void closeKeyboard() {
