@@ -30,20 +30,37 @@ public class Lists extends AppCompatActivity {
             }
         });
 
-        Button lists = (Button) findViewById(R.id.listsButton);
-        lists.setOnClickListener(new View.OnClickListener() {
+        Button lists1 = (Button) findViewById(R.id.listsButton1);
+        lists1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                launchActivity();
+                Bundle b = new Bundle();
+                b.putInt("key", 1); //Your id
+
+                launchActivity(b);
+            }
+        });
+
+        Button lists2 = (Button) findViewById(R.id.listsButton2);
+        lists2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle b = new Bundle();
+                b.putInt("key", 2); //Your id
+
+                launchActivity(b);
             }
         });
 
     }
 
-    private void launchActivity() {
+    private void launchActivity(Bundle b) {
 
         Intent intent = new Intent(this, SubList.class);
+        intent.putExtras(b); //Put your id to your next Intent
+
         startActivity(intent);
     }
 
@@ -69,3 +86,6 @@ public class Lists extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+
+
+
