@@ -47,12 +47,30 @@ public class SubList extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, items);
         lvItems.setOnItemClickListener(mMessageClickedHandler);
         lvItems.setAdapter(itemsAdapter);
-        items.add("Milk");
-        items.add("Eggs");
-        items.add("Bread");
-        items.add("Beer");
-        items.add("Christmas movie");
-        items.add("Take out the trash");
+
+        Bundle b = getIntent().getExtras();
+        int value = -1; // or other values
+        if(b != null)
+            value = b.getInt("key");
+
+        if (value == 1)
+        {
+            items.add("Milk");
+            items.add("Eggs");
+            items.add("Bread");
+            items.add("Beer");
+            items.add("Christmas movie");
+
+        }
+
+        else if (value == 2)
+        {
+            items.add("Take out the trash");
+            items.add("Feed the Dog");
+            items.add("Clean the gutter");
+            items.add("Address and ship Christmas Cards");
+
+        }
 
         //Go to share page
         FloatingActionButton share = (FloatingActionButton) findViewById(R.id.fab);
