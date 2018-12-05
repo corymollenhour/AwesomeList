@@ -53,6 +53,7 @@ public class SubList extends AppCompatActivity {
         if(b != null)
             value = b.getInt("key");
 
+        final int shareValue = value;
         if (value == 1)
         {
             items.add("Milk");
@@ -72,12 +73,16 @@ public class SubList extends AppCompatActivity {
 
         }
 
+
         //Go to share page
         FloatingActionButton share = (FloatingActionButton) findViewById(R.id.fab);
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                launchActivity();
+                Bundle c = new Bundle();
+                c.putInt("key", shareValue); //Your id
+
+                launchActivity(c);
             }
         });
 
@@ -105,9 +110,11 @@ public class SubList extends AppCompatActivity {
         }
     };
 
-    private void launchActivity() {
+    private void launchActivity(Bundle c) {
 
         Intent intent = new Intent(this, Share.class);
+        intent.putExtras(c); //Put your id to your next Intent
+
         startActivity(intent);
     }
 

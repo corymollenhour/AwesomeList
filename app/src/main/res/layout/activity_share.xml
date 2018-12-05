@@ -30,4 +30,16 @@
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="198dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_margin="16dp"
+        android:translationX="-8dp"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:layout_anchor="@+id/fab"
+        app:layout_anchorGravity="bottom"
+        app:srcCompat="@drawable/ic_chat_black_24dp"/>
+
 </android.support.design.widget.CoordinatorLayout>
